@@ -1,5 +1,8 @@
 package com.kaweri;
 
+import com.kaweri.BarajaFrancesa.Palo;
+import com.kaweri.BarajaFrancesa.Rango;
+
 /**
  * Clase Carta
  * Esta clase define objetos tipo carta de naipes con un palo, un rango y un valor.
@@ -11,8 +14,8 @@ package com.kaweri;
 public class Carta {
 
     //Campos de la clase
-    private final String rango;
-    private final String palo;
+    private final Rango rango;
+    private final Palo palo;
     private final int valor;
 
     /**
@@ -21,28 +24,10 @@ public class Carta {
      * @param palo Define el palo de la carta { Treboles, Picas...}
      * @param valor Define el valor numerico de la carta
      */
-    Carta(String rango, String palo, int valor) {
+    Carta(Rango rango, Palo palo, int valor) {
         this.rango = rango;
         this.palo = palo;
         this.valor = valor;
-    }
-
-    /**
-     * Metodo que devuelve el rango de la carta
-     * Usado solo para el metodo toString de la clase
-     * @return Rango de la carta
-     */
-    private String getRango() {
-        return rango;
-    }
-
-    /**
-     * Metodo que devuelve el palo de la carta
-     * Usado solo para el metodo toString de la clase
-     * @return Palo de la carta
-     */
-    private String getPalo() {
-        return palo;
     }
 
     /**
@@ -59,6 +44,6 @@ public class Carta {
      */
     @Override
     public String toString(){
-        return String.format("%-6s de %s", getRango(), getPalo());
+        return String.format("%-6s de %s", rango, palo );
     }
 }

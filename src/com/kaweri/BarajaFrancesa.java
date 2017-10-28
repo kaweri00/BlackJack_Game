@@ -14,6 +14,9 @@ class BarajaFrancesa {
     //Campo de la clase
     private Carta[] mazo;
 
+    public enum Rango{ AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, DIEZ, JOTA, REINA, REY }
+    public enum Palo{ CORAZONES, DIAMANTES, PICAS, TREBOLES }
+
     /**
      * Constructor unico. Crea las 52 cartas y las asigna al campo "mazo" de la clase.
      */
@@ -35,11 +38,11 @@ class BarajaFrancesa {
     private void nuevoMazo(){
         int cantidadCartas = 0;
         Carta[] mazoNuevo = new Carta[52];
-        final String[] rangos = { "AS", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE", "DIEZ", "JOTA", "REINA", "REY"};
-        final String[] palos  = { "CORAZONES", "DIAMANTES", "PICAS", "TREBOLES"};
-        for( String palo : palos){
-            for( int i = 0; i < rangos.length; i++ ){
-                mazoNuevo[cantidadCartas] = new Carta( rangos[i], palo, asignarValorDeCarta(i));
+        for( Palo palo : Palo.values()){
+            int contadorRango = 0;
+            for( Rango rango : Rango.values()){
+                mazoNuevo[cantidadCartas] = new Carta( rango, palo, asignarValorDeCarta(contadorRango));
+                contadorRango++;
                 cantidadCartas++;
             }
         }
@@ -59,6 +62,5 @@ class BarajaFrancesa {
         if( posicionCarta > 0 && posicionCarta < 10 ){ return posicionCarta + 1;}
         else{ return 10;}
     }
-
 
 }
