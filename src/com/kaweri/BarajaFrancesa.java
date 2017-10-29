@@ -14,8 +14,8 @@ class BarajaFrancesa {
     //Campo de la clase
     private Carta[] mazo;
 
-    public enum Rango{ AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, DIEZ, JOTA, REINA, REY }
-    public enum Palo{ CORAZONES, DIAMANTES, PICAS, TREBOLES }
+    enum Rango{ AS, DOS, TRES, CUATRO, CINCO, SEIS, SIETE, OCHO, NUEVE, DIEZ, JOTA, REINA, REY }
+    enum Palo{ CORAZONES, DIAMANTES, PICAS, TREBOLES }
 
     /**
      * Constructor unico. Crea las 52 cartas y las asigna al campo "mazo" de la clase.

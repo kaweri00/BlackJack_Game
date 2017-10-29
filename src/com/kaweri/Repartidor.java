@@ -1,8 +1,9 @@
 package com.kaweri;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
+import java.util.Collections;
 import java.util.Stack;
 
 /**
@@ -10,11 +11,11 @@ import java.util.Stack;
  * @since 10/10/2017
  * @version 1.0
  */
-public class Repartidor {
+    class Repartidor {
 
     private Stack<Carta> bandejaSalida;
 
-    public Repartidor(){
+    Repartidor(){
         bandejaSalida = new Stack<>();
     }
 
@@ -29,7 +30,8 @@ public class Repartidor {
         for( int i = 1; i <= barajasEntrantes; i++ ){
             receptor.addAll( Arrays.asList( baraja ));
         }
-        bandejaSalida.addAll(barajar( receptor ));
+        Collections.shuffle( receptor );
+        bandejaSalida.addAll( receptor );
     }
 
     private void vaciar(){
@@ -38,22 +40,14 @@ public class Repartidor {
         }
     }
 
-    private ArrayList<Carta> barajar( ArrayList<Carta> barajasOrdenadas){
-        Random random = new Random();
-        ArrayList<Carta> salidaMezclador = new ArrayList<>();
-        while( barajasOrdenadas.size() > 0){
-            salidaMezclador.add( barajasOrdenadas.remove( random.nextInt( barajasOrdenadas.size() ) ) );
-        }
-        return salidaMezclador;
-    }
-
     private int validarCantidadBarajas(int barajasEntrantes){
-        int BARAJASMINIMAS = 1;
-        int BARAJASMAXIMAS = 8;
+        final int BARAJASMINIMAS = 1;
+        final int BARAJASMAXIMAS = 8;
         return ( barajasEntrantes >= BARAJASMINIMAS && barajasEntrantes <= BARAJASMAXIMAS)? barajasEntrantes: 1;
     }
 
     Carta reparte(){
         return bandejaSalida.pop();
     }
+
 }

@@ -23,47 +23,38 @@ public class Mano {
         return valor;
     }
 
-    public boolean esBlackJack() {
-        return (mano.size() == 2) && (valor == 21);
-    }
-
-
     void anadirCarta( Carta carta ){
         mano.add( carta );
         valor += carta.getValor();
-        if( esAs(carta)){
-            asesBlandos++;
-        }
-        if( getValor() > 21 && esBlanda()){
-            setAs_a_uno();
-        }
+        if( esAs(carta) ){ asesBlandos++; }
+        if( getValor() > 21 && esBlanda() ){ setAs_a_uno(); }
     }
 
     private void setAs_a_uno(){
-        this.valor -= 10;
-        this.asesBlandos--;
-    }
-
-    protected boolean esBlanda(){
-            return this.asesBlandos > 0;
-    }
-
-    private boolean esAs( Carta carta){
-        return carta.getValor() == 11;
-    }
-
-    private boolean tieneCartas(){
-        boolean hayCartas = false;
-        if( mano.size() > 0){
-            hayCartas = true;
-        }
-        return hayCartas;
+        valor -= 10;
+        asesBlandos--;
     }
 
     void limpiarMano(){
         mano.clear();
         valor = 0;
         asesBlandos = 0;
+    }
+
+    boolean esBlackJack() {
+        return (mano.size() == 2) && (valor == 21);
+    }
+
+    boolean esBlanda(){
+            return this.asesBlandos > 0;
+    }
+
+    private boolean esAs( Carta carta ){
+        return carta.getValor() == 11;
+    }
+
+    private boolean tieneCartas(){
+        return mano.size() > 0;
     }
 
     @Override
@@ -74,14 +65,9 @@ public class Mano {
                 texto.append(carta);
                 texto.append("\n");
             }
-
-            texto.append( "    Valor : ");
-            texto.append(getValor());
-            if( esBlanda()){
-                texto.append(" Blando\n");
-            }else{
-                texto.append(" Duro\n");
-            }
+            texto.append( "  Valor : ");
+            texto.append( getValor() );
+            texto.append( esBlanda()? " Blando\n": " Duro\n" );
             return texto.toString();
         }
         else{ return "¡No tiene cartas!\n"; }
