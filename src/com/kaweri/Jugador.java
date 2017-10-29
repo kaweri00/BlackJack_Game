@@ -4,10 +4,22 @@ public class Jugador extends ActorDelJuego {
 
     private float credito;
     private float montoApuesta;
+    private Estado estado;
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public enum Estado { GANA, GANA_BJ, EMPATA, PIERDE }
 
     Jugador( String nombre ){
         super( nombre );
         credito = 2000;
+        estado = null;
     }
 
     public float getCredito() {
@@ -36,6 +48,6 @@ public class Jugador extends ActorDelJuego {
 
     @Override
     public String toString() {
-        return String.format( "%s, actualmente tiene un credito de $%.2f\n");
+        return String.format( "%s, actualmente tiene un credito de $%.2f\n", getNombre(), credito);
     }
 }
